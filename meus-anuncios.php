@@ -29,11 +29,13 @@ if(empty($_SESSION['cLogin'])){ // se a sessao estiver vazia
     $anuncios = $a->getMeusAnuncios();
     foreach($anuncios as $anuncio):
         ?>
+            <tr>
             <!-- Parte do HTML -->
             <td><img src="assets/images/anuncios/<?php echo $anuncio['url']; ?>" alt="imagemAnuncio" border="0"></td>
             <td><?php echo $anuncio['titulo']; ?></td>
             <td> R$ <?php echo number_format($anuncio['valor'],2); ?></td>
             <td></td>
+            </tr>
     <?php endforeach; ?>
   
 </table>

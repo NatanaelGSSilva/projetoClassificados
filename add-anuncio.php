@@ -35,7 +35,7 @@ if(isset($_POST['titulo']) && !empty($_POST['titulo'])){
 <div class="container">
     <h1>Meus Anúncios - Adicionar Anúncios</h1>
 
-    <form action="" method"POST" enctype = "multipart/form-data" > <!--Formulario aceita data-->
+    <form  method="POST" enctype = "multipart/form-data" > <!--Formulario aceita data-->
     
     
         <div class="form-group">

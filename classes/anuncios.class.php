@@ -24,12 +24,12 @@ class Anuncios{
          id_categoria = :id_categoria, id_usuario = :id_usuario, descricao = :descricao,
           valor = :valor, estado=:estado");
 
-          $sql->bindValue('titulo', $titulo);// preencher os detalhes agora
-          $sql->bindValue('id_categoria', $id_categoria);// preencher os detalhes agora
-          $sql->bindValue('id_usuario', $_SESSION['cLogin']);// Dono do produto que esta adicionando ele
-          $sql->bindValue('descricao', $descricao);// preencher os detalhes agora
-          $sql->bindValue('valor', $valor);// preencher os detalhes agora
-          $sql->bindValue('estado', $estado);// preencher os detalhes agora
+          $sql->bindValue(":titulo", $titulo);// preencher os detalhes agora
+          $sql->bindValue(":id_categoria", $categoria);// preencher os detalhes agora
+          $sql->bindValue(":id_usuario", $_SESSION['cLogin']);// Dono do produto que esta adicionando ele
+          $sql->bindValue(":descricao", $descricao);// preencher os detalhes agora
+          $sql->bindValue(":valor", $valor);// preencher os detalhes agora
+          $sql->bindValue(":estado", $estado);// preencher os detalhes agora
           $sql->execute();
          
     }
