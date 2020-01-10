@@ -4,8 +4,8 @@ class Anuncios{
     public function getMeusAnuncios(){
         global $pdo;
         $array = array(); // array vazio porque se ele não entrar no if ele continua criado porem soque vazio
-        $sql = $pdo->prepare("SELECT *, (select anuncios_imagens.url 
-        from anuncios_imagens where anuncios_imagens.id_anuncio = anuncio.id limit 1) 
+        $sql = $pdo->prepare("SELECT *,(select anuncios_imagens.url 
+        from anuncios_imagens where anuncios_imagens.id_anuncio = anuncios.id limit 1) 
         as url FROM anuncios WHERE id_usuario=:id_usuario"); // pegar uma unica foto 
         $sql->bindValue(":id_usuario", $_SESSION['cLogin']);
         $sql->execute();
@@ -34,3 +34,4 @@ class Anuncios{
          
     }
 }
+
