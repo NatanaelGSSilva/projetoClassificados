@@ -17,6 +17,20 @@ class Anuncios{
         return $array;
     }
 
+    public function getAnuncio($id){// função para buscar um anuncio
+        $array = array();
+        global $pdo;
+
+        $sql = $pdo->prepare("SELECT * from anuncios WHERE id = :id");
+        $sql->bindValue(":id", $id);
+        $sql->execute();
+
+
+        if($sql->rowCount() >0){ // se ouve algum retorno
+            $array = $sql->fetch();
+        }
+        return $array;
+    }
 
     public function addAnuncio($titulo, $categoria, $valor, $descricao, $estado){
         global $pdo;
@@ -33,5 +47,40 @@ class Anuncios{
           $sql->execute();
          
     }
+    public function editAnuncio($titulo, $categoria, $valor, $descricao, $estado,$id){
+        global $pdo;
+        $sql = $pdo->prepare("UPDATE anuncios SET titulo = :titulo,
+         id_categoria = :id_categoria, id_usuario = :id_usuario, descricao = :descricao,
+          valor = :valor, estado=:estado WHERE id=:id");
+
+          $sql->bindValue(":titulo", $titulo);// preencher os detalhes agora
+          $sql->bindValue(":id_categoria", $categoria);// preencher os detalhes agora
+          $sql->bindValue(":id_usuario", $_SESSION['cLogin']);// Dono do produto que esta adicionando ele
+          $sql->bindValue(":descricao", $descricao);// preencher os detalhes agora
+          $sql->bindValue(":valor", $valor);// preencher os detalhes agora
+          $sql->bindValue(":estado", $estado);// preencher os detalhes agora
+          $sql->bindValue(":id", $id);// preencher os detalhes agora
+
+          $sql->execute();
+         
+    }
+
+    public function excluirAnuncio($id){ // tem que fazer 2 coisas(tem que excluir as imagens e o anuncio)
+        global $pdo;
+        $sql = $pdo->prepare("DELETE FROM anuncios_imagens WHERE id_anuncio = :id_anuncio"); // vai remover o registro de imagens
+        $sql->bindValue(":id_anuncio", $id);
+        $sql->execute(); 
+
+        $sql = $pdo->prepare("DELETE FROM anuncios WHERE id = :id"); 
+        $sql->bindValue(":id", $id);
+        $sql->execute(); 
+
+        
+
+
+
+    }
+
+
 }
 

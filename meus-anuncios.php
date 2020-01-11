@@ -31,10 +31,20 @@ if(empty($_SESSION['cLogin'])){ // se a sessao estiver vazia
         ?>
             <tr>
             <!-- Parte do HTML -->
-            <td><img src="assets/images/anuncios/<?php echo $anuncio['url']; ?>" alt="imagemAnuncio" border="0"></td>
+            <td>
+            <?php if(!empty($anuncio['url'])): ?>
+            <img src="assets/images/anuncios/<?php echo $anuncio['url']; ?>" alt="imagemAnuncio" border="0" height="100">
+            <?php else: ?>
+            <img src="assets/images/logo.png" height="50" border="0" />
+            <?php endif;?>
+
+            </td>
             <td><?php echo $anuncio['titulo']; ?></td>
             <td> R$ <?php echo number_format($anuncio['valor'],2); ?></td>
-            <td></td>
+            <td>
+                <a href="editar-anuncio.php?id=<?php echo $anuncio['id']; ?>" class="btn btn-default">Editar</a><!--Tem que mandar um id-->
+                <a href="excluir-anuncio.php?id=<?php echo $anuncio['id']; ?>" class="btn btn-danger">Excluir</a>
+            </td>
             </tr>
     <?php endforeach; ?>
   
